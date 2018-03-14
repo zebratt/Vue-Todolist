@@ -16,7 +16,6 @@ export default {
     }),
     methods: {
         addNewItem: () => {
-            console.log(123);
         }
     }
 }
