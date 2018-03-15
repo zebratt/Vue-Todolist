@@ -7,9 +7,15 @@
         <div class="items" :key="index" v-for="(item, index) in items" @click='clickItem(item)' :class='{completed:item.iscompleted}'>
             {{item.item}}
         </div>
+        <div>
+            <h1>Tests</h1>
+            <Test></Test>
+        </div>
     </div>
 </template>
 <script>
+import Test from './modules/Test.vue'
+
 export default {
     name: 'app',
     data: () => ({
@@ -29,6 +35,9 @@ export default {
                 this.newItem = ''
             }
         }
+    },
+    components: {
+        Test
     }
 }
 </script>
