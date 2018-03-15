@@ -68,7 +68,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({4:[function(require,module,exports) {
+})({6:[function(require,module,exports) {
 var global = (1,eval)("this");
 'use strict';
 
@@ -7349,7 +7349,7 @@ if (inBrowser) {
 /*  */
 
 exports.default = Vue;
-},{}],6:[function(require,module,exports) {
+},{}],9:[function(require,module,exports) {
 var inserted = exports.cache = {}
 
 function noop () {}
@@ -7374,7 +7374,7 @@ exports.insert = function (css) {
   }
 }
 
-},{}],5:[function(require,module,exports) {
+},{}],7:[function(require,module,exports) {
 var Vue // late bind
 var version
 var map = (window.__VUE_HOT_MAP__ = Object.create(null))
@@ -7616,8 +7616,8 @@ exports.reload = tryWrap(function (id, options) {
   })
 })
 
-},{}],3:[function(require,module,exports) {
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 2, src/App.scss */\n.header button[data-v-a9f95376] {\n  margin-top: 10px;\n  margin-right: 20px;\n  padding: 6px 12px;\n  float: right;\n  cursor: pointer; }");(function () {
+},{}],4:[function(require,module,exports) {
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 2, src/App.scss */\n.header button[data-v-a9f95376] {\n  margin-top: 10px;\n  margin-right: 20px;\n  padding: 6px 12px;\n  float: right;\n  cursor: pointer; }\n\n/* line 13, src/App.scss */\n.items[data-v-a9f95376] {\n  height: 50px;\n  line-height: 50px;\n  margin-left: 25px;\n  font-size: 18px;\n  cursor: pointer; }\n\n/* line 21, src/App.scss */\n.items.completed[data-v-a9f95376] {\n  text-decoration: line-through;\n  color: #aaa; }");(function () {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -7627,12 +7627,22 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 
         name: 'app',
         data: function data() {
             return {
-                items: []
+                items: [],
+                newItem: ''
             };
         },
         methods: {
+            clickItem: function clickItem(item) {
+                item.iscompleted = !item.iscompleted;
+            },
+            newItemEnter: function newItemEnter() {
+                this.addNewItem();
+            },
             addNewItem: function addNewItem() {
-                console.log(123);
+                if (this.newItem) {
+                    this.items.push({ item: this.newItem, iscompleted: false });
+                    this.newItem = '';
+                }
             }
         }
     };
@@ -7643,8 +7653,18 @@ if (__vue__options__.functional) {
     console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.");
 }
 __vue__options__.render = function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { attrs: { "id": "App" } }, [_c('div', { staticClass: "header" }, [_c('button', { on: { "click": _vm.addNewItem } }, [_vm._v("Add new item")])]), _vm._v(" "), _vm._l(_vm.items, function (item, index) {
-        return _c('div', { key: index, staticClass: "items" }, [_vm._v("\n        " + _vm._s(item) + "\n    ")]);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { attrs: { "id": "App" } }, [_c('div', { staticClass: "header" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.newItem, expression: "newItem" }], attrs: { "type": "text" }, domProps: { "value": _vm.newItem }, on: { "keyup": function keyup($event) {
+                if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) {
+                    return null;
+                }return _vm.newItemEnter($event);
+            }, "input": function input($event) {
+                if ($event.target.composing) {
+                    return;
+                }_vm.newItem = $event.target.value;
+            } } }), _vm._v(" "), _c('button', { on: { "click": _vm.addNewItem } }, [_vm._v("Add new item")])]), _vm._v(" "), _vm._l(_vm.items, function (item, index) {
+        return _c('div', { key: index, staticClass: "items", class: { completed: item.iscompleted }, on: { "click": function click($event) {
+                    _vm.clickItem(item);
+                } } }, [_vm._v("\n        " + _vm._s(item.item) + "\n    ")]);
     })], 2);
 };
 __vue__options__.staticRenderFns = [];
@@ -7663,7 +7683,7 @@ if (module.hot) {
         }
     })();
 }
-},{"vueify/lib/insert-css":6,"vue-hot-reload-api":5,"vue":4}],2:[function(require,module,exports) {
+},{"vueify/lib/insert-css":9,"vue-hot-reload-api":7,"vue":6}],2:[function(require,module,exports) {
 'use strict';
 
 var _vue = require('vue');
@@ -7682,7 +7702,7 @@ new _vue2.default({
         return h(_App2.default);
     }
 });
-},{"vue":4,"./App.vue":3}],0:[function(require,module,exports) {
+},{"vue":6,"./App.vue":4}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module(config) {
@@ -7701,7 +7721,7 @@ function Module(config) {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://localhost:64450/');
+  var ws = new WebSocket('ws://localhost:54342/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 

@@ -9,6 +9,7 @@
         cursor: pointer;
     }
 }
+
 .items{
     height:50px;
     line-height: 50px;
@@ -16,6 +17,7 @@
     font-size: 18px;
     cursor:pointer;
 }
+
 .items.completed{
     text-decoration: line-through;
     color:#aaa;
