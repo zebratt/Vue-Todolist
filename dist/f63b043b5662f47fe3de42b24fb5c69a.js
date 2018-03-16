@@ -68,7 +68,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({7:[function(require,module,exports) {
+})({5:[function(require,module,exports) {
 var global = (1,eval)("this");
 'use strict';
 
@@ -7349,7 +7349,7 @@ if (inBrowser) {
 /*  */
 
 exports.default = Vue;
-},{}],9:[function(require,module,exports) {
+},{}],7:[function(require,module,exports) {
 var inserted = exports.cache = {}
 
 function noop () {}
@@ -7374,7 +7374,7 @@ exports.insert = function (css) {
   }
 }
 
-},{}],8:[function(require,module,exports) {
+},{}],6:[function(require,module,exports) {
 var Vue // late bind
 var version
 var map = (window.__VUE_HOT_MAP__ = Object.create(null))
@@ -7616,8 +7616,8 @@ exports.reload = tryWrap(function (id, options) {
   })
 })
 
-},{}],5:[function(require,module,exports) {
-;(function () {
+},{}],4:[function(require,module,exports) {
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 64, stdin */\n.active[data-v-4018ab26] {\n  background: #ff2222;\n  color: #fff; }");(function () {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -7626,13 +7626,25 @@ exports.reload = tryWrap(function (id, options) {
     exports.default = {
         data: function data() {
             return {
-                text: ''
+                text: '',
+                isActive: false,
+                isOk: false,
+                items: ['aaa', 'bbb'],
+                person: {
+                    name: 'callie',
+                    age: 18,
+                    sex: 'female'
+                }
             };
         },
         methods: {
             showTexts: function showTexts() {
                 console.log('text:' + this.text);
-            }
+            },
+            classToggle: function classToggle() {
+                this.isActive = !this.isActive;
+            },
+            updatePerson: function updatePerson() {}
         },
         computed: {
             textLen: function textLen() {
@@ -7656,15 +7668,23 @@ __vue__options__.render = function render() {
                 if ($event.target.composing) {
                     return;
                 }_vm.text = $event.target.value;
-            } } }), _vm._v(" "), _c('p', [_vm._v("text length: " + _vm._s(_vm.textLen))])]);
+            } } }), _vm._v(" "), _c('p', [_vm._v("text length: " + _vm._s(_vm.textLen))]), _vm._v(" "), _c('h2', [_vm._v("Class和style的绑定")]), _vm._v(" "), _c('button', { class: { active: _vm.isActive }, on: { "click": _vm.classToggle } }, [_vm._v(_vm._s(_vm.isActive ? 'remove class' : 'add class'))]), _vm._v(" "), _c('div', { style: { width: '100px', height: '100px', border: '#333 solid 1px', margin: '10px' } }), _vm._v(" "), _c('h2', [_vm._v("条件渲染")]), _vm._v(" "), _c('button', { on: { "click": function click($event) {
+                _vm.isOk = !_vm.isOk;
+            } } }, [_vm._v("change status")]), _vm._v(" "), _vm.isOk ? _c('span', [_vm._v("I'm ok")]) : _c('span', [_vm._v("I'm not ok")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.isOk, expression: "isOk" }] }, [_vm._v("v-show ok")]), _vm._v(" "), _c('h2', [_vm._v("列表渲染")]), _vm._v(" "), _vm._l(_vm.items, function (item) {
+        return _c('span', { key: item }, [_vm._v(_vm._s(item + ' '))]);
+    }), _vm._v(" "), _c('h3', [_vm._v("v-for-object")]), _vm._v(" "), _vm._l(_vm.person, function (value, key) {
+        return _c('span', { key: key }, [_vm._v(_vm._s(key) + ":" + _vm._s(value + '; '))]);
+    }), _vm._v(" "), _c('h2', [_vm._v("对象的检测和变更")]), _vm._v(" "), _c('button', { on: { "click": _vm.updatePerson } }, [_vm._v("update person")])], 2);
 };
 __vue__options__.staticRenderFns = [];
+__vue__options__._scopeId = "data-v-4018ab26";
 if (module.hot) {
     (function () {
         var hotAPI = require("vue-hot-reload-api");
         hotAPI.install(require("vue"), true);
         if (!hotAPI.compatible) return;
         module.hot.accept();
+        module.hot.dispose(__vueify_style_dispose__);
         if (!module.hot.data) {
             hotAPI.createRecord("data-v-4018ab26", __vue__options__);
         } else {
@@ -7672,7 +7692,7 @@ if (module.hot) {
         }
     })();
 }
-},{"vue-hot-reload-api":8,"vue":7}],3:[function(require,module,exports) {
+},{"vueify/lib/insert-css":7,"vue-hot-reload-api":6,"vue":5}],3:[function(require,module,exports) {
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* line 2, src/App.scss */\n.header button[data-v-a9f95376] {\n  margin-top: 10px;\n  margin-right: 20px;\n  padding: 6px 12px;\n  float: right;\n  cursor: pointer; }\n\n/* line 13, src/App.scss */\n.items[data-v-a9f95376] {\n  height: 50px;\n  line-height: 50px;\n  margin-left: 25px;\n  font-size: 18px;\n  cursor: pointer; }\n\n/* line 21, src/App.scss */\n.items.completed[data-v-a9f95376] {\n  text-decoration: line-through;\n  color: #aaa; }");(function () {
     'use strict';
 
@@ -7721,7 +7741,7 @@ if (__vue__options__.functional) {
     console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.");
 }
 __vue__options__.render = function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { attrs: { "id": "App" } }, [_c('div', { staticClass: "header" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.newItem, expression: "newItem" }], attrs: { "type": "text" }, domProps: { "value": _vm.newItem }, on: { "keyup": function keyup($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { attrs: { "id": "App" } }, [_c('h2', [_vm._v("Todolist")]), _vm._v(" "), _c('div', { staticClass: "header" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.newItem, expression: "newItem" }], attrs: { "type": "text" }, domProps: { "value": _vm.newItem }, on: { "keyup": function keyup($event) {
                 if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) {
                     return null;
                 }return _vm.newItemEnter($event);
@@ -7751,7 +7771,7 @@ if (module.hot) {
         }
     })();
 }
-},{"vueify/lib/insert-css":9,"./modules/Test.vue":5,"vue-hot-reload-api":8,"vue":7}],2:[function(require,module,exports) {
+},{"vueify/lib/insert-css":7,"./modules/Test.vue":4,"vue-hot-reload-api":6,"vue":5}],2:[function(require,module,exports) {
 'use strict';
 
 var _vue = require('vue');
@@ -7770,7 +7790,7 @@ new _vue2.default({
         return h(_App2.default);
     }
 });
-},{"vue":7,"./App.vue":3}],0:[function(require,module,exports) {
+},{"vue":5,"./App.vue":3}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module(config) {
@@ -7789,7 +7809,7 @@ function Module(config) {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
-  var ws = new WebSocket('ws://localhost:50957/');
+  var ws = new WebSocket('ws://localhost:52609/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 

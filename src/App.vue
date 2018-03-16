@@ -1,5 +1,6 @@
 <template>
     <div id="App">
+        <h2>Todolist</h2>
         <div class="header">
             <input type="text" v-model="newItem" @keyup.enter='newItemEnter'>
             <button @click="addNewItem">Add new item</button>
